@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 
-function Navbar() {
+function UserNavBar() {
   return (
     <nav className="navbar navbar-expand-md bg-body-tertiary position-relative">
       <div className="container-fluid d-flex align-items-center">
@@ -68,4 +68,4 @@ function Navbar() {
   );
 }
 
-export default Navbar;
+export default UserNavBar;

@@ -1,51 +1,56 @@
-import Navbar from "./components/Navbar";
-import Map from "./components/Map";
-import Saved from "./components/Saved";
-import Filter from "./components/Filter";
-import Footer from "./components/Footer";
-import Restaurants from "./components/Restaurants";
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Navbar from './components/Navbar';
+import UserNavBar from "./components/UserNavBar";
+import Footer from './components/Footer';
+import Map from './components/Map';
+import Saved from './components/Saved';
+import Filter from './components/Filter';
+import Restaurants from './components/Restaurants';
+import Profile from './components/Profile';
+import LoginForm from './components/LoginForm'; // Import Login Component
+import RegisterForm from './components/RegisterForm'; // Import Register Component
 
-function App() {
+function Home() {
   return (
     <>
-      <Navbar />
-      <Saved />
-      <Map /> {/* This will render the map */}
-
+      <br />
+      <div className='container d-flex justify-content-center align-items-center'><h4>Location</h4></div>
+      <Map />
       <div
         style={{
-          padding: "20px",
-          display: "flex",
-          flexDirection: "row", // Default layout: Filters on the left, Restaurants on the right
-          gap: "20px", // Spacing between Filters and Restaurants
-          flexWrap: "wrap", // Allow wrapping on smaller screens
+          padding: '20px',
+          display: 'flex',
+          flexDirection: 'row',
+          gap: '20px',
+          flexWrap: 'wrap',
         }}
       >
-        {/* Filters Section */}
-        <div
-          style={{
-            flex: "1 1 250px", // Flex-grow, flex-shrink, and base width
-            maxWidth: "300px", // Maximum width for Filters
-          }}
-        >
+        <div style={{ flex: '1 1 250px', maxWidth: '300px' }}>
           <h5>Filters</h5>
           <Filter />
         </div>
 
-        {/* Restaurants Section */}
-        <div
-          style={{
-            flex: "3 1 600px", // Takes up more space than Filters
-            minWidth: "300px", // Minimum width for Restaurants
-          }}
-        >
+        <div style={{ flex: '3 1 600px', minWidth: '300px' }}>
           <h5>Restaurants</h5>
           <Restaurants />
         </div>
       </div>
-
-      <Footer />
     </>
+  );
+}
+
+function App() {
+  return (
+    <Router>
+      <Navbar />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/profile" element={<Profile />} />
+        <Route path="/login" element={<LoginForm />} /> {/* ✅ Add Login Route */}
+        <Route path="/register" element={<RegisterForm />} /> {/* ✅ Add Register Route */}
+      </Routes>
+      <Footer />
+    </Router>
   );
 }
 
